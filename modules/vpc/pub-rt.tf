@@ -12,6 +12,6 @@ resource "aws_route_table" "ojt-pub-RT" {
 }
 
 resource "aws_route_table_association" "ojt-pub-RT-association" {
-    subnet_id = aws_subnet.ojt-public-subnet-pub.id
-    route_table_id = aws_route_table.dev-pub-RT.id
+    subnet_id = aws_subnet.ojt-public-subnet.id
+    route_table_id = aws_route_table.ojt-pub-RT.id
 }
