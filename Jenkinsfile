@@ -9,7 +9,8 @@ pipeline {
         }
     stage('Build AMI with Packer') {
             steps {
-                script {      
+                script {   
+                    sh 'packer init .'
                     sh 'packer build aws-ubuntu.pkr.hcl'
                 }
             }
