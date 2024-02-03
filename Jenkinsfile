@@ -7,7 +7,13 @@ pipeline {
                git branch: 'main', url: 'https://github.com/gopinekkanti/OPQ-OJT.git'            
             }
         }
-    
+    stage('Build AMI with Packer') {
+            steps {
+                script {      
+                    sh 'packer build aws-ubuntu.pkr.hcl'
+                }
+            }
+    }
         stage ("terraform init") {
             steps {
                 sh ("terraform init -reconfigure") 
@@ -22,8 +28,7 @@ pipeline {
 
         stage (" Action") {
             steps {
-                echo "Terraform action is --> ${action}"
-                sh ('terraform ${action} --auto-approve') 
+                sh ('terraform apply --auto-approve') 
            }
         }
     }
